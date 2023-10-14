@@ -55,8 +55,9 @@ Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
                    false, false, false);  // No accelerator, brake, or steering
 
 void setup() {
-  bitSet(DDRD, 0); bitClear(PORTD, 0); //CTL-ON LED
-  bitSet(DDRD, 1); bitClear(PORTD, 1); //MODE LED
+  bitSet(DDRD, 0); bitClear(PORTD, 0); //CTL-ON LED - OFF
+  bitSet(DDRD, 1); bitClear(PORTD, 1); //MODE LED - OFF
+  bitSet(DDRE, 6); bitClear(PORTE, 6); //STATUS LED - OFF
 
 
   Joystick.setXAxisRange(-1, 1);
@@ -81,6 +82,8 @@ void setup() {
   bitClear(DDRB, 0);
 
   Joystick.sendState();
+  
+  bitSet(PORTE, 6); //STATUS LED - ON
 }
 
 byte DPAD_UP;
@@ -161,7 +164,7 @@ void send_state() {
 
 
 void loop() {
-  while (1) {
+  while (1) { //https://arduino.stackexchange.com/questions/337/would-an-infinite-loop-inside-loop-perform-faster
     current_state = controller.getState();
     send_state();
   }

@@ -51,38 +51,30 @@ enum sega_state {
 
 constexpr byte SC_INPUT_PINS = 6;
 
-constexpr byte SC_CYCLES_6BTN = 7;
+constexpr byte SC_CYCLES_6BTN = 7; 
 constexpr byte SC_CYCLES_3BTN = 5;
-
-
 
 constexpr byte SC_READ_DELAY_MS = 4;  // Must be >= 3ms to give 6-button controller time to reset
 
 
+constexpr byte SC_CYCLE_DELAY_US = 6;  // Delay (µs) between setting the select pin and reading the button pins
 
-#if (F_CPU > 8000000L) //for sure it works on ATmega48 with clock 16MHz and  11,0592MHz
-constexpr byte SC_CYCLE_DELAY_US = 4;  // Delay (µs) between setting the select pin and reading the button pins
-#elif (F_CPU > 7000000L)
-constexpr byte SC_CYCLE_DELAY_US = 2;
-#elif (F_CPU == 4000000L)
-constexpr byte SC_CYCLE_DELAY_US = 1;
-#endif
 
 
 class SegaController {
-  public:
-    SegaController(byte db9_pin_7, byte db9_pin_1, byte db9_pin_2, byte db9_pin_3, byte db9_pin_4, byte db9_pin_6, byte db9_pin_9);
-    word getState();
-    bool nod(bool KEY_DIR, bool SECONDARY_DIR);
-  private:
-    byte readCycle(byte cycle);
-    void writeCycle_regs_to_state(byte cycle,  byte SEGA_reg);
-    word _currentState;
-    unsigned long _lastReadTime;
-    boolean _sixButtonMode;
-    byte _selectPin;  // output select pin
-    byte _inputPins[SC_INPUT_PINS];
-
+public:
+  SegaController(byte db9_pin_7, byte db9_pin_1, byte db9_pin_2, byte db9_pin_3, byte db9_pin_4, byte db9_pin_6, byte db9_pin_9);
+  word getState();
+  bool nod(bool KEY_DIR, bool SECONDARY_DIR);
+private:
+  byte readCycle(byte cycle);
+  void writeCycle_regs_to_state(byte cycle,  byte SEGA_reg);
+  word _currentState;
+  unsigned long _lastReadTime;
+  boolean _sixButtonMode;
+  byte _selectPin;  // output select pin
+  byte _inputPins[SC_INPUT_PINS];
+  
 };
 
 //#endif

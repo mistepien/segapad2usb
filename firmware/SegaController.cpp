@@ -90,7 +90,7 @@ word SegaController::getState() {
   //This is here the most time sensitive piece of code
   //slowness means failure in communication  with gamepad
   //SEGA gamepad readings of port registers are dumped to the byte array
-  //It works like a kind of shiftIn -- but output is not a byte
+  //It works like a kind of shiftIn -- but output is not a byte but
   //an array of bytes
   //That's all folks
 

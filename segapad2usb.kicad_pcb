@@ -7,8 +7,8 @@
   (paper "A4")
   (title_block
     (title "segapad2usb")
-    (rev "0.4")
-    (company "mistepien")
+    (rev "0.5")
+    (company "mistepien@wp.pl")
   )
 
   (layers
@@ -3328,6 +3328,9 @@
   )
   (gr_text "rev. ${REVISION}" (at 100.584 48) (layer "F.SilkS") (tstamp 7e342d96-26d3-48c0-8d43-e23f035036e2)
     (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (gr_text "JLCJLCJLCJLC" (at 88.5 69.5 90) (layer "F.SilkS") (tstamp e8cc6fac-f7f6-4369-ade0-92616345f21c)
+    (effects (font (size 1.5 1.5) (thickness 0.3) bold) (justify left bottom))
   )
   (dimension (type aligned) (layer "Dwgs.User") (tstamp 4dadcb56-97a6-4474-b50f-7ef6f4c42122)
     (pts (xy 65 51) (xy 110 51))

@@ -65,7 +65,6 @@ class SegaController {
 public:
   SegaController(byte db9_pin_7, byte db9_pin_1, byte db9_pin_2, byte db9_pin_3, byte db9_pin_4, byte db9_pin_6, byte db9_pin_9);
   word getState();
-  bool nod(bool KEY_DIR, bool SECONDARY_DIR);
 private:
   byte readCycle(byte cycle);
   void writeCycle_regs_to_state(byte cycle,  byte SEGA_reg);
@@ -74,7 +73,7 @@ private:
   boolean _sixButtonMode;
   byte _selectPin;  // output select pin
   byte _inputPins[SC_INPUT_PINS];
-  
+  bool nod(bool KEY_DIR, bool SECONDARY_DIR);
 };
 
 //#endif

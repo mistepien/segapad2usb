@@ -50,13 +50,10 @@ enum sega_state {
 #define PIN_REG_inputPins PINB
 
 constexpr byte SC_INPUT_PINS = 6;
-
 constexpr byte SC_CYCLES_6BTN = 7; 
 constexpr byte SC_CYCLES_3BTN = 5;
 
 constexpr byte SC_READ_DELAY_MS = 4;  // Must be >= 3ms to give 6-button controller time to reset
-
-
 constexpr byte SC_CYCLE_DELAY_US = 6;  // Delay (µs) between setting the select pin and reading the button pins
 
 
@@ -67,7 +64,7 @@ public:
   word getState();
 private:
   byte readCycle(byte cycle);
-  void writeCycle_regs_to_state(byte cycle,  byte SEGA_reg);
+  void writeCycle_regs_to_state(byte cycle, byte SEGA_reg);
   word _currentState;
   unsigned long _lastReadTime;
   boolean _sixButtonMode;

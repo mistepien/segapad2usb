@@ -38,8 +38,8 @@ enum sega_state {
   SC_BTN_X = 10,
   SC_BTN_Y = 11,
   SC_BTN_Z = 12,
-  SC_BTN_HOME = 13
-  //SC_BTN_MODE = 14, //availabe in M30 2.4 8Bitdo gamepad
+  SC_BTN_HOME = 13 //availabe in M30 2.4 8Bitdo gamepad
+  //SC_BTN_MODE = 14
 };
 
 #define DDR_REG_select_Pin DDRD
@@ -52,10 +52,8 @@ enum sega_state {
 constexpr byte SC_INPUT_PINS = 6;
 constexpr byte SC_CYCLES_6BTN = 7; 
 constexpr byte SC_CYCLES_3BTN = 5;
-
 constexpr byte SC_READ_DELAY_MS = 4;  // Must be >= 3ms to give 6-button controller time to reset
 constexpr byte SC_CYCLE_DELAY_US = 6;  // Delay (µs) between setting the select pin and reading the button pins
-
 
 class SegaController {
 public:
@@ -72,3 +70,4 @@ private:
   bool nod(bool KEY_DIR, bool SECONDARY_DIR);
 };
 
+//#endif

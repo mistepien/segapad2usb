@@ -57,7 +57,6 @@ constexpr byte SC_READ_DELAY_MS = 4;  // Must be >= 3ms to give 6-button control
 constexpr byte SC_CYCLE_DELAY_US = 6;  // Delay (µs) between setting the select pin and reading the button pins
 
 
-
 class SegaController {
 public:
   SegaController(byte db9_pin_7, byte db9_pin_1, byte db9_pin_2, byte db9_pin_3, byte db9_pin_4, byte db9_pin_6, byte db9_pin_9);
@@ -73,4 +72,3 @@ private:
   bool nod(bool KEY_DIR, bool SECONDARY_DIR);
 };
 
-//#endif

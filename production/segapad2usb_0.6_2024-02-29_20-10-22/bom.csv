@@ -1,0 +1,10 @@
+﻿Designator,Footprint,Quantity,Value,LCSC Part #
+D1,LED_D3.0mm_Oval,1,CTL-ON,
+D2,LED_D3.0mm_Oval,1,6BTN MODE,
+D3,LED_D3.0mm_Oval,1,STATUS,
+J1,DSUB-9_Male_Horizontal_P2.77x2.84mm_EdgePinOffset9.90mm_Housed_OVAL_MountingHolesOffset11.32mm,1,DB9_MALE_SEGA,
+J2,PinHeader_2x04_P2.54mm_Vertical,1,Conn_02x04_Odd_Even,
+"R1, R2, R3",R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal_Oval,3,RxΩ,
+SW1,SW_PUSH_6mm_H4.3mm,1,RST,
+SW2,SW_PUSH_6mm_H4.3mm,1,HOT KEY,
+U1,DIP-24_W15.24mm_Socket_LongPads,1,Arduino_Pro_Micro,

@@ -19,7 +19,7 @@ One footprint is not trivial: DB9 male socket (<b>J1</b>). Officialy the <b>J1</
 
 Sometimes during uploading code to Arduino board you may face some issues -- then you will need to use RESET -- so <b>SW1</b> can be useful if you like to develope your own code.
 
-LED D1 shows whether controller is working in 6-button mode. LED D2 shows is Sega MD/Genesis gampepad connected at all.
+LED D1 shows whether controller is working in 6-button mode. LED D2 shows is Sega MD/Genesis gampepad connected at all. LED D3 show status of Arduino (turn on in setup() function of firmware).
 
 BOM:
 | Qty	| Reference(s) | Description |
@@ -28,7 +28,7 @@ BOM:
 |1 |	J1|	DB9 Male Connector <a href="https://www.tme.eu/pl/en/details/ld09p13a4gx00lf/d-sub-plugs-and-sockets/amphenol-communications-solutions/">LD09P13A4GX00LF Amphenol</a> |
 |1 |	J2|	2x4 Pinheader. pitch terminal: 2.54mm |
 |1 | R1, R2. R3 | resistors for D1, D2 and D3 |
-|1 | SW1 | Tact switch from Arduino breadboard projects |
+|1 | SW1,SW2 | Tact switches from Arduino breadboard projects |
 |1 | U1 |	DIP20 socket (width 15.24mm) + <a href="https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/hardware-overview-pro-micro">Arduino Pro Micro</a> |
 
 

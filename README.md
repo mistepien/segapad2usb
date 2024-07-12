@@ -9,7 +9,7 @@ Sega MD/Genesis gampepad adapter to USB.
 
 ATmega 32U4 has a hardware support for fullspeed USB, thus <a href="https://wiki.archlinux.org/title/mouse_polling_rate">polling rate 1000Hz</a> is not an issue for that chip.
 
-You can use the <a href="https://github.com/mistepien/segapad2usb/tree/main/gerber">gerber file<a> to order the PCB.
+You can use the <a href="https://github.com/mistepien/segapad2usb/tree/main/production">gerber file<a> to order the PCB.
 
 Attached <a href="https://github.com/mistepien/segapad2usb/tree/main/firmware">code</a> uses port registers so that is quite efficient. The code is based on <a href="https://github.com/jonthysell/SegaController">SegaController library</a>. That library was changed to use port registers and support HOME button. The code was tested with <a href="https://www.8bitdo.com/m30-2-4g/">M30 2.4G for SEGA Genesis & Mega Drive</a> and <a href="https://retro-bit.com/sega-genesis-6-button-arcade-pad-black.html">SEGA Genesis 6-button Arcade Pad</a>. <a href="https://www.8bitdo.com/m30-2-4g/">M30 2.4G for SEGA Genesis & Mega Drive</a> has a HOME button and it is fully supported by the code.
 

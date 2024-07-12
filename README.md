@@ -19,6 +19,8 @@ One footprint is not trivial: DB9 male socket (<b>J1</b>). Officialy the <b>J1</
 
 Sometimes during uploading code to Arduino board you may face some issues -- then you will need to use RESET -- so <b>SW1</b> can be useful if you like to develope your own code.
 
+SW2 can be usefull to have a so-called "Hot key" -- you can need it eg. in Batocera.
+
 LED D1 shows whether controller is working in 6-button mode. LED D2 shows is Sega MD/Genesis gampepad connected at all. LED D3 show status of Arduino (turn on in setup() function of firmware).
 
 BOM:

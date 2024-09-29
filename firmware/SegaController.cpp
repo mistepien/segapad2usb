@@ -125,7 +125,6 @@ word SegaController::getState() {
   made it very dependent upon very accurate delay :D
   For instance SNES protocol is much better.
   */
-#pragma GCC unroll 8
   for (byte cycle = 0; cycle < 8; cycle++) {
     _delay_us(SC_CYCLE_DELAY_US);
     _readCycle_regs[cycle] = PIN_REG_inputPins;

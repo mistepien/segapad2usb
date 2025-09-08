@@ -54,9 +54,9 @@ Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
                    false, false, false);  // No accelerator, brake, or steering
 
 void setup() {
-  bitSet(DDRD, 0); //bitClear(PORTD, 0); //CTL-ON LED - OFF
-  bitSet(DDRD, 1); //bitClear(PORTD, 1); //MODE LED - OFF
-  bitSet(DDRE, 6); //bitClear(PORTE, 6); //STATUS LED - OFF
+  bitSet(DDRD, 0);  //bitClear(PORTD, 0); //CTL-ON LED - OFF
+  bitSet(DDRD, 1);  //bitClear(PORTD, 1); //MODE LED - OFF
+  bitSet(DDRE, 6);  //bitClear(PORTE, 6); //STATUS LED - OFF
 
   sega.begin(7, 1, 2, 3, 4, 5, 6);
 
@@ -82,8 +82,8 @@ void setup() {
   bitClear(DDRB, 0);
 
   Joystick.sendState();
-  
-  bitSet(PORTE, 6); //STATUS LED - ON
+
+  bitSet(PORTE, 6);  //STATUS LED - ON
 }
 
 byte DPAD_UP;
@@ -93,47 +93,47 @@ byte DPAD_RIGHT;
 
 void button(byte btn, bool btn_state) {
   switch (btn) {
-    case 0:
-      bitWrite(PORTD, 0, btn_state); //CTL-ON
+    case SC_CTL_ON:
+      bitWrite(PORTD, 0, btn_state);  //CTL-ON
       break;
-    case 1:
-      bitWrite(PORTD, 1, btn_state); //6BTN-MODE
+    case SC_MODE:
+      bitWrite(PORTD, 1, btn_state);  //6BTN-MODE
       break;
-    case 2:
-      Joystick.setButton(0, btn_state); //BTN START
+    case SC_BTN_START:
+      Joystick.setButton(0, btn_state);  //BTN START
       break;
-    case 3:
-      DPAD_UP =  btn_state;
+    case SC_DPAD_UP:
+      DPAD_UP = btn_state;
       break;
-    case 4:
+    case SC_DPAD_DOWN:
       DPAD_DOWN = btn_state;
       break;
-    case 5:
+    case SC_DPAD_LEFT:
       DPAD_LEFT = btn_state;
       break;
-    case 6:
+    case SC_DPAD_RIGHT:
       DPAD_RIGHT = btn_state;
       break;
-    case 7:
-      Joystick.setButton(1, btn_state); //BTN A
+    case SC_BTN_A:
+      Joystick.setButton(1, btn_state);  //BTN A
       break;
-    case 8:
-      Joystick.setButton(2, btn_state); //BTN B
+    case SC_BTN_B:
+      Joystick.setButton(2, btn_state);  //BTN B
       break;
-    case 9:
-      Joystick.setButton(3, btn_state); //BTN C
+    case SC_BTN_C:
+      Joystick.setButton(3, btn_state);  //BTN C
       break;
-    case 10:
-      Joystick.setButton(4, btn_state); //BTN X
+    case SC_BTN_X:
+      Joystick.setButton(4, btn_state);  //BTN X
       break;
-    case 11:
-      Joystick.setButton(5, btn_state); //BTN Y
+    case SC_BTN_Y:
+      Joystick.setButton(5, btn_state);  //BTN Y
       break;
-    case 12:
-      Joystick.setButton(6, btn_state); //BTN Z
+    case SC_BTN_Z:
+      Joystick.setButton(6, btn_state);  //BTN Z
       break;
-    case 13:
-      Joystick.setButton(7, btn_state); //BTN HOME //ONLY M30 8Bitdo
+    case SC_BTN_HOME:
+      Joystick.setButton(7, btn_state);  //BTN HOME //ONLY M30 8Bitdo
       break;
   }
 }
@@ -142,13 +142,14 @@ word current_state = 0;
 word prev_state = 0;
 
 void send_state() {
-  current_state &= 16383; /*&= B0011 1111 1111 1111; CLEAR 2 highest bits
-                                                   other way SC_BTN_MODE would trigger
-                                                   the routine but we are not interested
-                                                   in SC_BTN_MODE at all
+  bitClear(current_state, SC_BTN_MODE);
+  /* clear SC_BTN_MODE would trigger
+   the routine but we are not interested
+   in SC_BTN_MODE at all
 */
+
   word changed_state = prev_state ^ current_state;
-  if ( changed_state ) {
+  if (changed_state) {
     prev_state = current_state;
     for (byte index = 0; index < 15; index++) {
       if (changed_state & 1) {
@@ -157,17 +158,16 @@ void send_state() {
       changed_state >>= 1;
       current_state >>= 1;
     }
-    
+
     Joystick.setYAxis(DPAD_DOWN - DPAD_UP);
     Joystick.setXAxis(DPAD_RIGHT - DPAD_LEFT);
-
   }
-  Joystick.sendState(); //ONE common send.State for AXISES AND BUTTONS
+  Joystick.sendState();  //ONE common send.State for AXISES AND BUTTONS
 }
 
 
 void loop() {
-  while (1) { //https://arduino.stackexchange.com/questions/337/would-an-infinite-loop-inside-loop-perform-faster
+  while (1) {  //https://arduino.stackexchange.com/questions/337/would-an-infinite-loop-inside-loop-perform-faster
     current_state = sega.getState();
     send_state();
   }

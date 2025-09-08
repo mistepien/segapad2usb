@@ -44,7 +44,6 @@
 
 
 #include "SegaController.h"
-SegaController controller(7, 1, 2, 3, 4, 5, 6);
 
 #include <Joystick.h>  //https://github.com/MHeironimus/ArduinoJoystickLibrary
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
@@ -55,10 +54,11 @@ Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID, JOYSTICK_TYPE_JOYSTICK,
                    false, false, false);  // No accelerator, brake, or steering
 
 void setup() {
-  bitSet(DDRD, 0); bitClear(PORTD, 0); //CTL-ON LED - OFF
-  bitSet(DDRD, 1); bitClear(PORTD, 1); //MODE LED - OFF
-  bitSet(DDRE, 6); bitClear(PORTE, 6); //STATUS LED - OFF
+  bitSet(DDRD, 0); //bitClear(PORTD, 0); //CTL-ON LED - OFF
+  bitSet(DDRD, 1); //bitClear(PORTD, 1); //MODE LED - OFF
+  bitSet(DDRE, 6); //bitClear(PORTE, 6); //STATUS LED - OFF
 
+  sega.begin(7, 1, 2, 3, 4, 5, 6);
 
   Joystick.setXAxisRange(-1, 1);
   Joystick.setYAxisRange(-1, 1);
@@ -150,11 +150,14 @@ void send_state() {
   word changed_state = prev_state ^ current_state;
   if ( changed_state ) {
     prev_state = current_state;
-    for (byte index = 0; index < 14; index++) {
-      if (bitRead(changed_state, index)) {
-        button(index, bitRead(current_state, index));
+    for (byte index = 0; index < 15; index++) {
+      if (changed_state & 1) {
+        button(index, current_state & 1);
       }
+      changed_state >>= 1;
+      current_state >>= 1;
     }
+    
     Joystick.setYAxis(DPAD_DOWN - DPAD_UP);
     Joystick.setXAxis(DPAD_RIGHT - DPAD_LEFT);
 
@@ -165,7 +168,7 @@ void send_state() {
 
 void loop() {
   while (1) { //https://arduino.stackexchange.com/questions/337/would-an-infinite-loop-inside-loop-perform-faster
-    current_state = controller.getState();
+    current_state = sega.getState();
     send_state();
   }
 }
